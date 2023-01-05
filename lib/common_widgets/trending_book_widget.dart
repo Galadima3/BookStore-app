@@ -58,11 +58,13 @@ class TrendingBookWidget extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 110.0),
             child: SizedBox(
-                height: 75,
-                child: Center(
-                    child: Icon(
+              height: 75,
+              child: Center(
+                child: Icon(
                   Icons.bookmark_border_outlined,
-                ))),
+                ),
+              ),
+            ),
           )
         ],
       ),

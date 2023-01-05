@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class BookWidget extends StatelessWidget {
   final Color color;
   final String bookName;
-  const BookWidget({super.key, required this.color, required this.bookName});
+  final String authorName;
+  const BookWidget({super.key, required this.color, required this.bookName, required this.authorName});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,18 @@ class BookWidget extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          Text(
-            bookName,
-            style: TextStyle(color: Colors.black),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                bookName,
+                style: const TextStyle(color: Colors.black),
+              ),
+              Text(
+                authorName,
+                style: const TextStyle(fontWeight: FontWeight.w300),
+              ),
+            ],
           )
         ],
       ),
