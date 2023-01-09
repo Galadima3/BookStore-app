@@ -1,6 +1,6 @@
 import 'package:bookstore_app/common_widgets/pseudo_app_bar.dart';
-import 'package:bookstore_app/data/search_networking.dart';
-import 'package:bookstore_app/domain/search_model.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,16 +36,8 @@ class SearchPage extends ConsumerWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         onSubmitted: (value) {
-                          final _data = ref.watch(searchFutureProvider(value));
+                          //final _data = ref.watch(searchFutureProvider(value));
                           
-                          _data.when(
-                              data: (_data) => print('Valid'),
-                              error: (error, stackTrace) {
-                                Center(
-                                  child: Text(error.toString()),
-                                );
-                              },
-                              loading: () => const CircularProgressIndicator());
 
                           // _data.when(
                           //   data: (_data) {
