@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               )
-              //const TrendingBookWidget(color: Colors.blue, bookTitle: 'Goat', bookAuthor: 'Mylez', bookRating: 4.78,)
+             
             ],
           ),
         ),

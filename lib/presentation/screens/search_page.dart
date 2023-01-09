@@ -1,11 +1,16 @@
 import 'package:bookstore_app/common_widgets/pseudo_app_bar.dart';
+import 'package:bookstore_app/data/search_networking.dart';
+import 'package:bookstore_app/domain/search_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends ConsumerWidget {
   SearchPage({super.key});
   final searchTextController = TextEditingController();
+  
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //final _data = ref.watch(searchDataProvider(searchTextController.text));
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -30,7 +35,48 @@ class SearchPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
-                        onSubmitted: (value) => debugPrint(value),
+                        onSubmitted: (value) {
+                          final _data = ref.watch(searchFutureProvider(value));
+                          
+                          _data.when(
+                              data: (_data) => print('Valid'),
+                              error: (error, stackTrace) {
+                                Center(
+                                  child: Text(error.toString()),
+                                );
+                              },
+                              loading: () => const CircularProgressIndicator());
+
+                          // _data.when(
+                          //   data: (_data) {
+                          //     List<SearchModel> resultList =
+                          //         _data.map((e) => e).toList();
+
+                          //     return Column(
+                          //       children: [
+                          //         Expanded(
+                          //           child: ListView.builder(
+                          //             itemCount: resultList.length,
+                          //             itemBuilder: (context, index) {
+                          //               return Card(
+                          //                 child: ListTile(
+                          //                   title: Text(resultList[index].items![index]!.volumeInfo!.authors.toString()),
+                          //                 ),
+                          //               );
+                          //             },
+                          //           ),
+                          //         )
+                          //       ],
+                          //     );
+                          //   },
+                          // error: (error, stackTrace) {
+                          //   Center(
+                          //     child: Text(error.toString()),
+                          //   );
+                          // },
+                          //   loading: () => const CircularProgressIndicator(),
+                          // );
+                        },
                         controller: searchTextController,
                         decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.search),
