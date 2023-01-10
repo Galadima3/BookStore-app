@@ -1,14 +1,16 @@
 import 'dart:convert';
 
 import 'package:bookstore_app/domain/popular_books_model.dart';
+import 'package:bookstore_app/utils/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 
 class PopularBookServices {
+  final secondApiObject = ApiConstants();
   Future<PopularBooksModel> getPopularBooks() async {
     try {
       Response response = await get(Uri.parse(
-          'https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=mhr8GAcCNC7I3VimBcaWFsEAa9B3Ms8M'));
+          secondApiObject.popularBooksUrl+secondApiObject.apiKey));
       final output = PopularBooksModel.fromJson(jsonDecode(response.body));
       return output;
     } catch (e) {

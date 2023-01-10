@@ -22,20 +22,6 @@ class HomePage extends ConsumerWidget {
     return result;
   }
 
-  final List bookInfo = [
-    ['Welcome to Heaven on earth', Colors.red, 'James Browning'],
-    ['Atlantis', Colors.green, 'Kevin Rock'],
-    ['Synergy', Colors.indigo, 'Dave Chapelle'],
-    ['Revenge', Colors.amber, 'Myles Munroe'],
-    ['Grace', Colors.deepPurple, 'Bobby Brown']
-  ];
-  final List trendingBooksInfo = [
-    [Colors.red, 'Welcome', 'Mylez', 5.0],
-    [Colors.green, 'Atlantis', 'Abeedah', 4.5],
-    [Colors.indigo, 'Synergy', 'Jack', 3.8],
-    [Colors.amber, 'Revenge', 'Maloney', 4.7],
-    [Colors.deepPurple, 'Grace', 'James', 5.0]
-  ];
   final controller1 = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -71,6 +57,7 @@ class HomePage extends ConsumerWidget {
                 child: Center(
                   child: popularBooks.when(
                     data: (bestseller) {
+                       
                       return ListView.builder(
                         itemCount: bestseller.results!.lists!.length,
                         scrollDirection: Axis.horizontal,
