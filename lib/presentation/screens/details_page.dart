@@ -1,7 +1,7 @@
 import 'package:bookstore_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-
+//TODO: Kindly ignore this file
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);
 

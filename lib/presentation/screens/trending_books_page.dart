@@ -59,7 +59,7 @@ class TrendingBooksPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text('Author'),
+                  const Text('Author'),
                   const SizedBox(height: 20),
                   const Text('John Abraham'),
                   const SizedBox(height: 20),
