@@ -3,6 +3,7 @@ import 'package:bookstore_app/common_widgets/pseudo_app_bar.dart';
 import 'package:bookstore_app/common_widgets/trending_book_widget.dart';
 import 'package:bookstore_app/data/popular_books_networking.dart';
 import 'package:bookstore_app/data/trending_books_networking.dart';
+import 'package:bookstore_app/presentation/screens/trending_books_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -57,7 +58,6 @@ class HomePage extends ConsumerWidget {
                 child: Center(
                   child: popularBooks.when(
                     data: (bestseller) {
-                       
                       return ListView.builder(
                         itemCount: bestseller.results!.lists!.length,
                         scrollDirection: Axis.horizontal,
@@ -111,16 +111,24 @@ class HomePage extends ConsumerWidget {
                       return ListView.builder(
                         itemCount: trendingBooks.results!.lists!.length,
                         itemBuilder: (context, index) {
-                          return TrendingBookWidget(
-                           imageLink: trendingBooks
-                                    .results!.lists![index]!.books![2]!.bookImage ??
-                                " ",
-                            bookTitle: trendingBooks
-                                    .results!.lists![index]!.books![2]!.title ??
-                                " ",
-                            bookAuthor: trendingBooks.results!.lists![index]!
-                                    .books![2]!.author ??
-                                " ",
+                          return GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      TrendingBooksPage(e: trendingBooks)),
+                            ),
+                            child: TrendingBookWidget(
+                              imageLink: trendingBooks.results!.lists![index]!
+                                      .books![2]!.bookImage ??
+                                  " ",
+                              bookTitle: trendingBooks.results!.lists![index]!
+                                      .books![2]!.title ??
+                                  " ",
+                              bookAuthor: trendingBooks.results!.lists![index]!
+                                      .books![2]!.author ??
+                                  " ",
+                            ),
                           );
                         },
                       );
@@ -133,20 +141,6 @@ class HomePage extends ConsumerWidget {
                     loading: () =>
                         const Center(child: CircularProgressIndicator()),
                   ))
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width,
-              //   height: 300,
-              // child: ListView.builder(
-              //   itemCount: trendingBooksInfo.length,
-              //   itemBuilder: (context, index) {
-              //     return TrendingBookWidget(
-              //       color: trendingBooksInfo[index][0],
-              //       bookTitle: trendingBooksInfo[index][1],
-              //       bookAuthor: trendingBooksInfo[index][2],
-              //     );
-              //     },
-              //   ),
-              // )
             ],
           ),
         ),

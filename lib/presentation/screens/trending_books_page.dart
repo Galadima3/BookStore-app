@@ -1,9 +1,10 @@
+import 'package:bookstore_app/domain/trending_books_model.dart';
 import 'package:bookstore_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+class TrendingBooksPage extends StatelessWidget {
+  final TrendingBooksModel e;
+  const TrendingBooksPage({Key? key, required this.e}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,40 +22,29 @@ class DetailsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
-
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-
                           height: 40,
                           width: 40,
                           decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle
-                          ),
+                              color: Colors.white, shape: BoxShape.circle),
                           child: const Center(
-                            child: Icon(
-                              Icons.arrow_back_ios_new
-                            ),
+                            child: Icon(Icons.arrow_back_ios_new),
                           ),
                         ),
                         Container(
                           height: 40,
                           width: 40,
                           decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle
-                          ),
+                              color: Colors.white, shape: BoxShape.circle),
                           child: const Center(
-                            child: Icon(
-                                Icons.bookmark
-                            ),
+                            child: Icon(Icons.bookmark),
                           ),
                         )
-
                       ],
                     ),
                   ),
@@ -69,11 +59,10 @@ class DetailsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text('Title'),
+                  Text('Author'),
                   const SizedBox(height: 20),
                   const Text('John Abraham'),
                   const SizedBox(height: 20),
-                 
                 ],
               ),
             ),
@@ -105,24 +94,28 @@ class DetailsPage extends StatelessWidget {
                   height: 40,
                   width: 170,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(12)
-                  ),
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(12)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-
                       const Text('QTY'),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const SizedBox(
                             width: 15,
                           ),
-                          IconButton(onPressed: (){}, icon: const Icon(Icons.add, size: 20,)),
-                           const Text('2'),
-                          IconButton(onPressed: (){}, icon: const Icon(Icons.remove, size: 20))
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.add,
+                                size: 20,
+                              )),
+                          const Text('2'),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.remove, size: 20))
                         ],
                       )
                     ],
@@ -132,11 +125,15 @@ class DetailsPage extends StatelessWidget {
                   height: 45,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF01800D),
-                    borderRadius: BorderRadius.circular(12)
-                  ),
+                      color: const Color(0xFF01800D),
+                      borderRadius: BorderRadius.circular(12)),
                   child: const Center(
-                    child: Text('Buy Now', style: TextStyle(color: Colors.white,),),
+                    child: Text(
+                      'Buy Now',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],

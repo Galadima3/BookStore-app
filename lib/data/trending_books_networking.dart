@@ -11,7 +11,9 @@ class TrendingBookServices {
     try {
       Response response =
           await get(Uri.parse(apiObject.trendingBooksUrl + apiObject.apiKey));
-      return TrendingBooksModel.fromJson(jsonDecode(response.body));
+      final dex = TrendingBooksModel.fromJson(jsonDecode(response.body));
+      
+      return dex;
     } catch (e) {
       throw Exception('An error occurred!');
     }
