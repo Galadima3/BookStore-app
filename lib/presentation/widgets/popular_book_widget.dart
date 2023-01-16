@@ -20,6 +20,7 @@ class BookWidget extends StatelessWidget {
     }
     return result;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,8 +40,9 @@ class BookWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                bookName,
-                style: const TextStyle(color: Colors.black),
+                capitalizeAllWord(bookName.toLowerCase()),
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
               ),
               Text(
                 authorName,

@@ -1,4 +1,5 @@
-import 'package:bookstore_app/common_widgets/pseudo_app_bar.dart';
+
+import 'package:bookstore_app/presentation/widgets/pseudo_app_bar.dart';
 
 
 import 'package:flutter/material.dart';

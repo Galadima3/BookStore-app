@@ -5,6 +5,7 @@ const kHeaderTextStyle = TextStyle(fontSize: 18.5, fontWeight: FontWeight.bold);
 final kMinorHeaderTextStyle = TextStyle(
     fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green.shade400);
 
+const kAuthorTextStyle = TextStyle(fontWeight: FontWeight.w300, fontSize: 17.5);
 
 class ApiConstants {
   String trendingBooksUrl =

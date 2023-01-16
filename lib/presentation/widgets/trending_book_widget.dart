@@ -5,12 +5,24 @@ class TrendingBookWidget extends StatelessWidget {
 
   final String bookTitle;
   final String bookAuthor;
-  const TrendingBookWidget({
-    Key? key,
-    required this.imageLink,
-    required this.bookTitle,
-    required this.bookAuthor,
-  }) : super(key: key);
+  const TrendingBookWidget(
+      {Key? key,
+      required this.imageLink,
+      required this.bookTitle,
+      required this.bookAuthor})
+      : super(key: key);
+
+  String capitalizeAllWord(String value) {
+    var result = value[0].toUpperCase();
+    for (int i = 1; i < value.length; i++) {
+      if (value[i - 1] == " ") {
+        result = result + value[i].toUpperCase();
+      } else {
+        result = result + value[i];
+      }
+    }
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +51,7 @@ class TrendingBookWidget extends StatelessWidget {
                             height: bookTitle.length > 30 ? 40 : 20,
                             width: 230),
                         child: Text(
-                          bookTitle,
+                          capitalizeAllWord(bookTitle.toLowerCase()),
                           overflow: TextOverflow.fade,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -80,7 +92,7 @@ class TrendingBookWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        bookTitle,
+                        capitalizeAllWord(bookTitle.toLowerCase()),
                         overflow: TextOverflow.fade,
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),

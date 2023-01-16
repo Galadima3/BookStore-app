@@ -1,9 +1,11 @@
-import 'package:bookstore_app/common_widgets/popular_book_widget.dart';
-import 'package:bookstore_app/common_widgets/pseudo_app_bar.dart';
-import 'package:bookstore_app/common_widgets/trending_book_widget.dart';
+
 import 'package:bookstore_app/data/popular_books_networking.dart';
 import 'package:bookstore_app/data/trending_books_networking.dart';
+import 'package:bookstore_app/presentation/screens/popular_books_page.dart';
 import 'package:bookstore_app/presentation/screens/trending_books_page.dart';
+import 'package:bookstore_app/presentation/widgets/popular_book_widget.dart';
+import 'package:bookstore_app/presentation/widgets/pseudo_app_bar.dart';
+import 'package:bookstore_app/presentation/widgets/trending_book_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,16 +64,26 @@ class HomePage extends ConsumerWidget {
                         itemCount: bestseller.results!.lists!.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return BookWidget(
-                              imageLink: bestseller.results!.lists![index]!
-                                      .books![1]!.bookImage ??
-                                  ' ',
-                              bookName: capitalizeAllWord(bestseller.results!
-                                      .lists![index]!.books![1]!.title ??
-                                  " "),
-                              authorName: capitalizeAllWord(bestseller.results!
-                                      .lists![index]!.books![1]!.author ??
-                                  " "));
+                          return GestureDetector(
+                          //    onTap: () => Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => PopularBooksPage(
+                          //           e: bestseller.results!.lists![index]!
+                          //               .books![2])),
+                          // ),
+                            
+                            child: BookWidget(
+                                imageLink: bestseller.results!.lists![index]!
+                                        .books![1]!.bookImage ??
+                                    ' ',
+                                bookName: capitalizeAllWord(bestseller.results!
+                                        .lists![index]!.books![1]!.title ??
+                                    " "),
+                                authorName: capitalizeAllWord(bestseller.results!
+                                        .lists![index]!.books![1]!.author ??
+                                    " ")),
+                          );
                         },
                       );
                     },
@@ -104,43 +116,45 @@ class HomePage extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  child: trendingBooks.when(
-                    data: (trendingBooks) {
-                      return ListView.builder(
-                        itemCount: trendingBooks.results!.lists!.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      TrendingBooksPage(e: trendingBooks)),
-                            ),
-                            child: TrendingBookWidget(
-                              imageLink: trendingBooks.results!.lists![index]!
-                                      .books![2]!.bookImage ??
-                                  " ",
-                              bookTitle: trendingBooks.results!.lists![index]!
-                                      .books![2]!.title ??
-                                  " ",
-                              bookAuthor: trendingBooks.results!.lists![index]!
-                                      .books![2]!.author ??
-                                  " ",
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    error: (error, stackTrace) {
-                      return Center(
-                        child: Text(error.toString()),
-                      );
-                    },
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                  ))
+                width: MediaQuery.of(context).size.width,
+                height: 300,
+                child: trendingBooks.when(
+                  data: (trendingBooks) {
+                    return ListView.builder(
+                      itemCount: trendingBooks.results!.lists!.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TrendingBooksPage(
+                                    e: trendingBooks.results!.lists![index]!
+                                        .books![2])),
+                          ),
+                          child: TrendingBookWidget(
+                            imageLink: trendingBooks.results!.lists![index]!
+                                    .books![2]!.bookImage ??
+                                " ",
+                            bookTitle: trendingBooks
+                                    .results!.lists![index]!.books![2]!.title ??
+                                " ",
+                            bookAuthor: trendingBooks.results!.lists![index]!
+                                    .books![2]!.author ??
+                                " ",
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  error: (error, stackTrace) {
+                    return Center(
+                      child: Text(error.toString()),
+                    );
+                  },
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                ),
+              )
             ],
           ),
         ),
