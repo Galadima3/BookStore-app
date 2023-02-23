@@ -65,13 +65,13 @@ class HomePage extends ConsumerWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                          //    onTap: () => Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => PopularBooksPage(
-                          //           e: bestseller.results!.lists![index]!
-                          //               .books![2])),
-                          // ),
+                             onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PopularBooksPage(
+                                    e: bestseller.results!.lists![index]!
+                                        .books![1])),
+                          ),
                             
                             child: BookWidget(
                                 imageLink: bestseller.results!.lists![index]!

@@ -92,7 +92,7 @@ class ListElement {
   final dynamic listImage;
   final dynamic listImageWidth;
   final dynamic listImageHeight;
-  final List<Book?>? books;
+  final List<PopBook?>? books;
 
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         listId: json["list_id"],
@@ -105,7 +105,7 @@ class ListElement {
         listImageHeight: json["list_image_height"],
         books: json["books"] == null
             ? []
-            : List<Book?>.from(json["books"]!.map((x) => Book.fromJson(x))),
+            : List<PopBook?>.from(json["books"]!.map((x) => PopBook.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -123,8 +123,8 @@ class ListElement {
       };
 }
 
-class Book {
-  Book({
+class PopBook {
+  PopBook({
     required this.ageGroup,
     required this.amazonProductUrl,
     required this.articleChapterLink,
@@ -178,7 +178,7 @@ class Book {
   final int? weeksOnList;
   final List<BuyLink?>? buyLinks;
 
-  factory Book.fromJson(Map<String, dynamic> json) => Book(
+  factory PopBook.fromJson(Map<String, dynamic> json) => PopBook(
         ageGroup: json["age_group"],
         amazonProductUrl: json["amazon_product_url"],
         articleChapterLink: json["article_chapter_link"],

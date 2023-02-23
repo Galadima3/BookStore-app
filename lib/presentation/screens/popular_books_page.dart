@@ -1,10 +1,13 @@
+import 'package:bookstore_app/domain/popular_books_model.dart';
+import 'package:bookstore_app/domain/popular_books_model.dart' as fix; 
 import 'package:bookstore_app/domain/trending_books_model.dart';
 import 'package:bookstore_app/presentation/widgets/purchase_widget.dart';
 import 'package:bookstore_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PopularBooksPage extends StatelessWidget {
-  final Book? e;
+  final e;
   const PopularBooksPage({Key? key, required this.e}) : super(key: key);
   String capitalizeAllWord(String value) {
     var result = value[0].toUpperCase();
@@ -54,6 +57,7 @@ class PopularBooksPage extends StatelessWidget {
                       height: 250,
                       width: 250,
                       child: Image.network(e!.bookImage.toString()),
+                     
                     ),
                   ),
 
