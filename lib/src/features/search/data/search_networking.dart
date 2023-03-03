@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 
-import 'package:bookstore_app/domain/search_model.dart';
+import 'package:bookstore_app/src/features/search/domain/search_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 

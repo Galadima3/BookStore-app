@@ -1,15 +1,17 @@
 
-import 'package:bookstore_app/data/popular_books_networking.dart';
-import 'package:bookstore_app/data/trending_books_networking.dart';
-import 'package:bookstore_app/presentation/screens/popular_books_page.dart';
-import 'package:bookstore_app/presentation/screens/trending_books_page.dart';
-import 'package:bookstore_app/presentation/widgets/popular_book_widget.dart';
-import 'package:bookstore_app/presentation/widgets/pseudo_app_bar.dart';
-import 'package:bookstore_app/presentation/widgets/trending_book_widget.dart';
+import 'package:bookstore_app/src/features/popular_books/data/popular_books_networking.dart';
+import 'package:bookstore_app/src/features/trending_books/data/trending_books_networking.dart';
+import 'package:bookstore_app/src/features/popular_books/presentation/popular_books_page.dart';
+import 'package:bookstore_app/src/features/trending_books/presentation/trending_books_page.dart';
+import 'package:bookstore_app/src/features/popular_books/presentation/popular_book_widget.dart';
+
+import 'package:bookstore_app/src/features/trending_books/presentation/trending_book_widget.dart';
+import 'package:bookstore_app/src/shared/widgets/pseudo_app_bar.dart';
+import 'package:bookstore_app/src/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../utils/constants.dart';
+
 
 class HomePage extends ConsumerWidget {
   HomePage({Key? key}) : super(key: key);

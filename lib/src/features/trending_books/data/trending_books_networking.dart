@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:bookstore_app/domain/trending_books_model.dart';
-import 'package:bookstore_app/utils/constants.dart';
+import 'package:bookstore_app/src/features/trending_books/domain/trending_books_model.dart';
+import 'package:bookstore_app/src/shared/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:http/http.dart';

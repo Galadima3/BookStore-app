@@ -1,4 +1,4 @@
-import 'package:bookstore_app/utils/constants.dart';
+import 'package:bookstore_app/src/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 //TODO: Kindly ignore this file
