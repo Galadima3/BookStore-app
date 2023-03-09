@@ -64,7 +64,7 @@ class Item {
         volumeInfo: VolumeInfo.fromJson(json["volumeInfo"]),
         saleInfo: SaleInfo.fromJson(json["saleInfo"]),
         accessInfo: AccessInfo.fromJson(json["accessInfo"]),
-        searchInfo: SearchInfo.fromJson(json["searchInfo"]),
+        searchInfo: SearchInfo.fromJson(json["searchInfo"] ?? ''),
     );
 
     Map<String, dynamic> toJson() => {
@@ -106,14 +106,14 @@ class AccessInfo {
 
     factory AccessInfo.fromJson(Map<String, dynamic> json) => AccessInfo(
         country: countryValues.map[json["country"]]!,
-        viewability: viewabilityValues.map[json["viewability"]]!,
+        viewability: viewabilityValues.map[json["viewability"]] ??= Viewability.NO_PAGES ,
         embeddable: json["embeddable"],
         publicDomain: json["publicDomain"],
         textToSpeechPermission: textToSpeechPermissionValues.map[json["textToSpeechPermission"]]!,
         epub: Epub.fromJson(json["epub"]),
         pdf: Epub.fromJson(json["pdf"]),
         webReaderLink: json["webReaderLink"],
-        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]]!,
+        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]] ?? AccessViewStatus.NONE,
         quoteSharingAllowed: json["quoteSharingAllowed"],
     );
 
@@ -236,7 +236,7 @@ class VolumeInfo {
         required this.maturityRating,
         required this.allowAnonLogging,
         required this.contentVersion,
-        required this.panelizationSummary,
+ 
         required this.imageLinks,
         required this.language,
         required this.previewLink,
@@ -258,7 +258,7 @@ class VolumeInfo {
     final MaturityRating maturityRating;
     final bool allowAnonLogging;
     final String contentVersion;
-    final PanelizationSummary panelizationSummary;
+ 
     final ImageLinks imageLinks;
     final Language language;
     final String previewLink;
@@ -274,20 +274,20 @@ class VolumeInfo {
         publishedDate: json["publishedDate"],
         industryIdentifiers: List<IndustryIdentifier>.from(json["industryIdentifiers"].map((x) => IndustryIdentifier.fromJson(x))),
         readingModes: ReadingModes.fromJson(json["readingModes"]),
-        pageCount: json["pageCount"],
+        pageCount: json["pageCount"] ?? 0,
         printType: printTypeValues.map[json["printType"]]!,
-        categories: List<String>.from(json["categories"].map((x) => x)),
+        categories: List<String>.from(json["categories"]?.map((x) => x) ?? []),
         maturityRating: maturityRatingValues.map[json["maturityRating"]]!,
         allowAnonLogging: json["allowAnonLogging"],
         contentVersion: json["contentVersion"],
-        panelizationSummary: PanelizationSummary.fromJson(json["panelizationSummary"]),
-        imageLinks: ImageLinks.fromJson(json["imageLinks"]),
+       
+        imageLinks: ImageLinks?.fromJson(json["imageLinks"]),
         language: languageValues.map[json["language"]]!,
         previewLink: json["previewLink"],
         infoLink: json["infoLink"],
         canonicalVolumeLink: json["canonicalVolumeLink"],
-        subtitle: json["subtitle"],
-        publisher: json["publisher"],
+        subtitle: json["subtitle"] ?? '',
+        publisher: json["publisher"] ?? '',
         description: json["description"],
     );
 
@@ -303,7 +303,7 @@ class VolumeInfo {
         "maturityRating": maturityRatingValues.reverse[maturityRating],
         "allowAnonLogging": allowAnonLogging,
         "contentVersion": contentVersion,
-        "panelizationSummary": panelizationSummary.toJson(),
+       
         "imageLinks": imageLinks.toJson(),
         "language": languageValues.reverse[language],
         "previewLink": previewLink,
