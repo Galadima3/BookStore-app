@@ -17,7 +17,7 @@ class SearchPage extends ConsumerWidget {
           searchFormKey.currentState!.validate()) {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => SearchResultScreen(
-            searchTerm: searchTextController.text,
+            searchTerm: searchTextController.text.split(' ')
           ),
         ));
       }

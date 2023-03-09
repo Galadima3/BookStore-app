@@ -1,12 +1,9 @@
-
-
 import 'package:bookstore_app/src/features/search/data/search_networking.dart';
-import 'package:bookstore_app/src/features/search/domain/search_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SearchResultScreen extends ConsumerStatefulWidget {
-  final String searchTerm;
+  final List searchTerm;
   const SearchResultScreen({required this.searchTerm, super.key});
 
   @override
@@ -24,6 +21,7 @@ class _SearchResultScreenState extends ConsumerState<SearchResultScreen> {
   }
 
   Future _getData() async {
+    
     return SearchApiService().getSearchResults(widget.searchTerm);
   }
 
@@ -37,7 +35,7 @@ class _SearchResultScreenState extends ConsumerState<SearchResultScreen> {
         ),
         body: searchResult.when(
           data: (data) => Center(
-            //child: Text(searchResult.value.?),
+            
             child: ListView.builder(
               itemCount: searchResult.value!.items.length,
               itemBuilder: (context, index) {
@@ -76,71 +74,8 @@ class _SearchResultScreenState extends ConsumerState<SearchResultScreen> {
           ),
         ),
       ),
-      // child: Scaffold(
-      //   body: FutureBuilder(
-      //     future: _value,
-      //     builder: (context, snapshot) {
-      //       if (snapshot.connectionState == ConnectionState.waiting) {
-      //         return const Center(child: CircularProgressIndicator());
-      //       } else if (snapshot.connectionState == ConnectionState.done) {
-      //         if (snapshot.hasError) {
-      //           return Center(child: Text(snapshot.error.toString()));
-      //         } else if (snapshot.hasData) {
-      //           return const Center(
-      //             child: Text('Success'),
-      //           );
-      //         } else {
-      //           return const Center(child: Text('Empty data'));
-      //         }
-      //       } else {
-      //         return Text('State: ${snapshot.connectionState}');
-      //       }
-      //     },
-      //   ),
-      // ),
+    
     );
   }
 }
 
-// class SearchResultScreen extends ConsumerStatefulWidget {
-//  final String searchTerm;
-//   const SearchResultScreen({super.key, required this.searchTerm});
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() => _SearchResultScreenState();
-// }
-
-// ConsumerState<ConsumerStatefulWidget>extends State<SearchResultScreen> {
-
-// Future<SearchModel> _getData() async {
-//   return SearchApiService().getSearchResults(widget.searchTerm);
-// }
-//   final booksearchResult = ref.w 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: FutureBuilder(
-//           future: _value,
-//           builder: (context, snapshot) {
-//             if (snapshot.connectionState == ConnectionState.waiting) {
-//               return const Center(child: CircularProgressIndicator());
-//             } else if (snapshot.connectionState == ConnectionState.done) {
-//               if (snapshot.hasError) {
-//                 return Center(child: Text(snapshot.error.toString()));
-//               } else if (snapshot.hasData) {
-//                 return const Center(
-//                   child: Text('Success'),
-//                 );
-//               } else {
-//                 return const Text('Empty data');
-//               }
-//             } else {
-//               return Text('State: ${snapshot.connectionState}');
-//             }
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -2,6 +2,7 @@
 //
 //     final searchModel = searchModelFromJson(jsonString);
 
+
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert';
@@ -43,7 +44,7 @@ class Item {
         required this.volumeInfo,
         required this.saleInfo,
         required this.accessInfo,
-        this.searchInfo,
+        required this.searchInfo,
     });
 
     final Kind kind;
@@ -53,7 +54,7 @@ class Item {
     final VolumeInfo volumeInfo;
     final SaleInfo saleInfo;
     final AccessInfo accessInfo;
-    final SearchInfo? searchInfo;
+    final SearchInfo searchInfo;
 
     factory Item.fromJson(Map<String, dynamic> json) => Item(
         kind: kindValues.map[json["kind"]]!,
@@ -63,7 +64,7 @@ class Item {
         volumeInfo: VolumeInfo.fromJson(json["volumeInfo"]),
         saleInfo: SaleInfo.fromJson(json["saleInfo"]),
         accessInfo: AccessInfo.fromJson(json["accessInfo"]),
-        searchInfo: json["searchInfo"] == null ? null : SearchInfo.fromJson(json["searchInfo"]),
+        searchInfo: SearchInfo.fromJson(json["searchInfo"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -74,7 +75,7 @@ class Item {
         "volumeInfo": volumeInfo.toJson(),
         "saleInfo": saleInfo.toJson(),
         "accessInfo": accessInfo.toJson(),
-        "searchInfo": searchInfo?.toJson(),
+        "searchInfo": searchInfo.toJson(),
     };
 }
 
@@ -130,11 +131,10 @@ class AccessInfo {
     };
 }
 
-enum AccessViewStatus { SAMPLE, NONE }
+enum AccessViewStatus { NONE }
 
 final accessViewStatusValues = EnumValues({
-    "NONE": AccessViewStatus.NONE,
-    "SAMPLE": AccessViewStatus.SAMPLE
+    "NONE": AccessViewStatus.NONE
 });
 
 enum Country { NG }
@@ -146,20 +146,16 @@ final countryValues = EnumValues({
 class Epub {
     Epub({
         required this.isAvailable,
-        this.acsTokenLink,
     });
 
     final bool isAvailable;
-    final String? acsTokenLink;
 
     factory Epub.fromJson(Map<String, dynamic> json) => Epub(
         isAvailable: json["isAvailable"],
-        acsTokenLink: json["acsTokenLink"],
     );
 
     Map<String, dynamic> toJson() => {
         "isAvailable": isAvailable,
-        "acsTokenLink": acsTokenLink,
     };
 }
 
@@ -169,11 +165,10 @@ final textToSpeechPermissionValues = EnumValues({
     "ALLOWED": TextToSpeechPermission.ALLOWED
 });
 
-enum Viewability { PARTIAL, NO_PAGES }
+enum Viewability { NO_PAGES }
 
 final viewabilityValues = EnumValues({
-    "NO_PAGES": Viewability.NO_PAGES,
-    "PARTIAL": Viewability.PARTIAL
+    "NO_PAGES": Viewability.NO_PAGES
 });
 
 enum Kind { BOOKS_VOLUME }
@@ -231,18 +226,13 @@ class SearchInfo {
 class VolumeInfo {
     VolumeInfo({
         required this.title,
-        this.subtitle,
         required this.authors,
-        this.publisher,
         required this.publishedDate,
-        this.description,
         required this.industryIdentifiers,
         required this.readingModes,
         required this.pageCount,
         required this.printType,
-        this.categories,
-        this.averageRating,
-        this.ratingsCount,
+        required this.categories,
         required this.maturityRating,
         required this.allowAnonLogging,
         required this.contentVersion,
@@ -252,21 +242,19 @@ class VolumeInfo {
         required this.previewLink,
         required this.infoLink,
         required this.canonicalVolumeLink,
+        required this.subtitle,
+        required this.publisher,
+        required this.description,
     });
 
     final String title;
-    final String? subtitle;
     final List<String> authors;
-    final String? publisher;
     final String publishedDate;
-    final String? description;
     final List<IndustryIdentifier> industryIdentifiers;
     final ReadingModes readingModes;
     final int pageCount;
     final PrintType printType;
-    final List<String>? categories;
-    final int? averageRating;
-    final int? ratingsCount;
+    final List<String> categories;
     final MaturityRating maturityRating;
     final bool allowAnonLogging;
     final String contentVersion;
@@ -276,21 +264,19 @@ class VolumeInfo {
     final String previewLink;
     final String infoLink;
     final String canonicalVolumeLink;
+    final String subtitle;
+    final String publisher;
+    final String description;
 
     factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json["title"],
-        subtitle: json["subtitle"],
         authors: List<String>.from(json["authors"].map((x) => x)),
-        publisher: json["publisher"],
         publishedDate: json["publishedDate"],
-        description: json["description"],
         industryIdentifiers: List<IndustryIdentifier>.from(json["industryIdentifiers"].map((x) => IndustryIdentifier.fromJson(x))),
         readingModes: ReadingModes.fromJson(json["readingModes"]),
         pageCount: json["pageCount"],
         printType: printTypeValues.map[json["printType"]]!,
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-        averageRating: json["averageRating"],
-        ratingsCount: json["ratingsCount"],
+        categories: List<String>.from(json["categories"].map((x) => x)),
         maturityRating: maturityRatingValues.map[json["maturityRating"]]!,
         allowAnonLogging: json["allowAnonLogging"],
         contentVersion: json["contentVersion"],
@@ -300,22 +286,20 @@ class VolumeInfo {
         previewLink: json["previewLink"],
         infoLink: json["infoLink"],
         canonicalVolumeLink: json["canonicalVolumeLink"],
+        subtitle: json["subtitle"],
+        publisher: json["publisher"],
+        description: json["description"],
     );
 
     Map<String, dynamic> toJson() => {
         "title": title,
-        "subtitle": subtitle,
         "authors": List<dynamic>.from(authors.map((x) => x)),
-        "publisher": publisher,
         "publishedDate": publishedDate,
-        "description": description,
         "industryIdentifiers": List<dynamic>.from(industryIdentifiers.map((x) => x.toJson())),
         "readingModes": readingModes.toJson(),
         "pageCount": pageCount,
         "printType": printTypeValues.reverse[printType],
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
-        "averageRating": averageRating,
-        "ratingsCount": ratingsCount,
+        "categories": List<dynamic>.from(categories.map((x) => x)),
         "maturityRating": maturityRatingValues.reverse[maturityRating],
         "allowAnonLogging": allowAnonLogging,
         "contentVersion": contentVersion,
@@ -325,6 +309,9 @@ class VolumeInfo {
         "previewLink": previewLink,
         "infoLink": infoLink,
         "canonicalVolumeLink": canonicalVolumeLink,
+        "subtitle": subtitle,
+        "publisher": publisher,
+        "description": description,
     };
 }
 
@@ -368,7 +355,7 @@ class IndustryIdentifier {
     };
 }
 
-enum Type { ISBN_13, ISBN_10, OTHER }
+enum Type { OTHER, ISBN_13, ISBN_10 }
 
 final typeValues = EnumValues({
     "ISBN_10": Type.ISBN_10,
